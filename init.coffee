@@ -42,7 +42,7 @@ KEYPAD_STARTING_POSITIONS   = (k for k,v of keypad).length
 time = -> (new Date()).getTime()
 
 # now that frequency lists are loaded, replace zxcvbn stub function.
-window.zxcvbn = (password, user_inputs) ->
+exports.zxcvbn = (password, user_inputs) ->
   start = time()
   if user_inputs?
     for i in [0...user_inputs.length]
@@ -53,5 +53,3 @@ window.zxcvbn = (password, user_inputs) ->
   result = minimum_entropy_match_sequence password, matches
   result.calc_time = time() - start
   result
-
-window.zxcvbn_load_hook?() # run load hook from user, if defined
